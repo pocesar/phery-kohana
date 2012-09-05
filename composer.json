@@ -1,0 +1,13 @@
+{
+	"name": "kohana-modules/phery",
+	"type": "kohana-module",
+	"description": "PHP to jQuery FULL mapping, seamless ajax integration and partial rendering views",
+	"keywords": ["kohana","ajax","unobtrusive","json","seamless","javascript","jquery","mapping","delegation"],
+	"require": {
+		"php": ">=5.3.0",
+		"phery/phery": ">=1.0"
+	},
+	"suggest": {
+		"ext-history.js": "Enable pushing URL states through AJAX along with changing the current url"
+	}
+}
