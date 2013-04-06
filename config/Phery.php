@@ -4,7 +4,6 @@
 return array(
 	'csrf' => true,
 	'error_reporting' => false,
-	'log' => true,
 	'exceptions' => true,
-	'set_always_available' => false,
+	'set_always_available' => true,
 );

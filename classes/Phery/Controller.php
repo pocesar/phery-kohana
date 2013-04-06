@@ -5,6 +5,9 @@ class Phery_Controller extends Controller {
 	 * @var Phery
 	 */
 	public $ajax;
+	/**
+	 * @var Array
+	 */
 	public $ajax_config;
 
 	/**
@@ -20,12 +23,7 @@ class Phery_Controller extends Controller {
 
 	public function before()
 	{
-		$this->ajax_config = array_replace(
-			array(
-				'log' => true,
-			),
-			Kohana::$config->load('Phery')->as_array()
-		);
+		$this->ajax_config = Kohana::$config->load('Phery')->as_array();
 
 		$this->ajax = Phery::instance();
 		View::bind_global('ajax', $this->ajax);
