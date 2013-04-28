@@ -20,8 +20,8 @@ class Controller_Phery_Test extends Phery_Controller {
 		echo '<head>';
 		echo $this->ajax->csrf();
 		echo '</head><body>';
-		echo html::script('javascripts/jquery.js');
-		echo html::script(Route::get('phery.js')->uri());
+		echo HTML::script('javascripts/jquery.js');
+		echo HTML::script(Route::get('phery.js')->uri());
 		echo Phery::link_to('link', 'remote');
 		echo '</body></html>';
 	}
@@ -32,8 +32,8 @@ class Controller_Phery_Test extends Phery_Controller {
 		echo '<head>';
 		echo $this->ajax->csrf();
 		echo '</head><body>';
-		echo html::script('javascripts/jquery.js');
-		echo html::script(Route::get('phery.js')->uri());
+		echo HTML::script('javascripts/jquery.js');
+		echo HTML::script(Route::get('phery.js')->uri());
 		echo Phery::link_to('link', 'remote');
 		echo '</body></html>';
 	}
