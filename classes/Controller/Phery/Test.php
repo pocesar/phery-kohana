@@ -22,7 +22,7 @@ class Controller_Phery_Test extends Phery_Controller {
 		echo '</head><body>';
 		echo html::script('javascripts/jquery.js');
 		echo html::script(Route::get('phery.js')->uri());
-		echo phery::link_to('link', 'remote');
+		echo Phery::link_to('link', 'remote');
 		echo '</body></html>';
 	}
 
@@ -34,7 +34,7 @@ class Controller_Phery_Test extends Phery_Controller {
 		echo '</head><body>';
 		echo html::script('javascripts/jquery.js');
 		echo html::script(Route::get('phery.js')->uri());
-		echo phery::link_to('link', 'remote');
+		echo Phery::link_to('link', 'remote');
 		echo '</body></html>';
 	}
 }
