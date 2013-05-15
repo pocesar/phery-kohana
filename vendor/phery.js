@@ -82,7 +82,7 @@
 			},
 			/**
 			 * @class
-			 * @version 2.5.0
+			 * @version 2.5.3
 			 * @extends {jQuery}
 			 */
 			phery = (function(){ return function(){ return phery; }; })();
@@ -108,7 +108,7 @@
 		 *
 		 * @type {String}
 		 */
-		phery.version = '2.5.0';
+		phery.version = '2.5.3';
 
 		/**
 		 *
@@ -600,6 +600,9 @@
 			'fail':function () {
 				return true;
 			},
+			'retry':function () {
+				return true;
+			},
 			'progress':function () {
 				return true;
 			},
@@ -984,7 +987,7 @@
 				url:(
 					cache ? url : (
 						url.indexOf('_=') === -1 ?
-							(url + (url.indexOf('?') > -1 ? '&' : '?') + '_=' + requested)
+							((url.indexOf('#') !== -1 ? url.substr(0, url.indexOf('#')) : url) + (url.indexOf('?') > -1 ? '&' : '?') + '_=' + requested)
 							:
 							(url.replace(/_=(\d+)/, '_=' + requested))
 						)
@@ -1029,6 +1032,7 @@
 
 						if (this.try_count <= this.retry_limit) {
 							functions.trigger_phery_event(dispatch_event, 'before');
+							functions.trigger_phery_event(dispatch_event, 'retry', [xhr, this.try_count]);
 
 							this.dataType = 'text ' + type;
 
