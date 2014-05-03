@@ -13,7 +13,7 @@ forms and/or links)
 
 ##
 
-For a full documentation of the phery.js library, check https://github.com/pocesar/phery
+For a full documentation of the phery.js library, check [https://github.com/pocesar/phery](https://github.com/pocesar/phery)
 
 ## Just follow these conventions:
 

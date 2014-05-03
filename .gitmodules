@@ -1,0 +1,4 @@
+[submodule "vendor"]
+	path = vendor
+	url = git@github.com:pocesar/phery.git
+	branch = master

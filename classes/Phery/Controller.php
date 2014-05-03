@@ -26,6 +26,7 @@ class Phery_Controller extends Controller {
 		$this->ajax_config = Kohana::$config->load('Phery')->as_array();
 
 		$this->ajax = Phery::instance();
+
 		View::bind_global('ajax', $this->ajax);
 
 		if (Phery::is_ajax(true))
@@ -61,12 +62,15 @@ class Phery_Controller extends Controller {
 
 		if (Phery::is_ajax(true))
 		{
-			$this->ajax->config($this->ajax());
+			$this->ajax->config(array_replace(
+                $this->ajax_config,
+                $this->ajax(),
+                array(
+				    'exit_allowed' => false,
+				    'return' => true
+			    )
+            ));
 
-			$this->ajax->config(array(
-				'exit_allowed' => false,
-				'return' => true
-			));
 
 			try
 			{
@@ -84,12 +88,19 @@ class Phery_Controller extends Controller {
 			{
 				Kohana::$log->add(Log::ERROR, $exc->getMessage());
 
+                $answer = PheryResponse::factory();
+
+                if ($exc->getCode() === Phery::ERROR_CSRF)
+                {
+                    $answer->renew_csrf($this->ajax);
+                }
+
 				$this
 				->response
 				->headers(array(
 					'Content-Type' => 'application/json'
 				))
-				->body(PheryResponse::factory());
+				->body($answer);
 			}
 		}
 	}

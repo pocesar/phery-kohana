@@ -6,4 +6,5 @@ return array(
 	'error_reporting' => false,
 	'exceptions' => true,
 	'set_always_available' => true,
+	'auto_session' => true
 );
