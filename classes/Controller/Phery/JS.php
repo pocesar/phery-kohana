@@ -22,11 +22,11 @@ class Controller_Phery_JS extends Controller {
 
         $this->response->headers(array(
             //set last-modified header
-            "Last-Modified: ".gmdate("D, d M Y H:i:s", $lastModified)." GMT",
+            'Last-Modified' => gmdate("D, d M Y H:i:s", $lastModified)." GMT",
             //set etag-header
-            "ETag: \"$etagFile\"",
+            'ETag' => "\"$etagFile\"",
             //make sure caching is turned on
-            'Cache-Control: public'
+            'Cache-Control' => 'public'
         ));
 
 		$javascript = file_get_contents(PHERY_JS);
