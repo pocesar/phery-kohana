@@ -12,27 +12,28 @@ class Controller_Phery_JS extends Controller {
         //get the HTTP_IF_NONE_MATCH header if set (etag: unique file hash)
         $etagHeader = (isset($_SERVER['HTTP_IF_NONE_MATCH']) ? trim($_SERVER['HTTP_IF_NONE_MATCH']) : false);
 
-        //check if page has changed. If not, send 304 and exit
-        if (($ifModifiedSince && @strtotime($ifModifiedSince) == $lastModified) || ($etagHeader && $etagHeader == $etagFile))
-        {
-               $this->response->status(304)->header(array());
-
-               exit;
-        }
-
         $this->response->headers(array(
             //set last-modified header
             'Last-Modified' => gmdate("D, d M Y H:i:s", $lastModified)." GMT",
             //set etag-header
             'ETag' => "\"$etagFile\"",
             //make sure caching is turned on
-            'Cache-Control' => 'public'
+            'Cache-Control' => 'public',
+            'Content-Type' => 'application/javascript;charset=utf-8'
         ));
 
-		$javascript = file_get_contents(PHERY_JS);
+        //check if page has changed. If not, send 304 and exit
+        if (($ifModifiedSince && @strtotime($ifModifiedSince) == $lastModified) || ($etagHeader && $etagHeader == $etagFile))
+        {
+               $this->response->status(304);
+        }
+        else
+        {
+            $javascript = file_get_contents(PHERY_JS);
 
-		$this
-            ->response
-            ->body($javascript);
+            $this
+                ->response
+                ->body($javascript);
+        }
 	}
 }
